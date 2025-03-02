@@ -15,13 +15,16 @@ import Link from "next/link";
 import ProductSelectionModal from "@/components/ProductSelectionModal";
 import { JsonProduct } from "@/types";
 
-interface EditOrderPageProps {
-  params: {
-    id: string;
-  };
-}
+// Sử dụng kiểu dữ liệu chính xác cho params
+type Params = {
+  id: string;
+};
 
-export default function EditOrderPage({ params }: EditOrderPageProps) {
+type Props = {
+  params: Params;
+};
+
+export default function EditOrderPage({ params }: Props) {
   const router = useRouter();
   const isHydrated = useHydration();
   const [isLoading, setIsLoading] = useState(true);
