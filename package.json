@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "scrape": "ts-node --project tsconfig.json -r tsconfig-paths/register src/scripts/scrape-food-be.ts"
+    "scrape": "ts-node --project tsconfig.json -r tsconfig-paths/register src/scripts/scrape-food-be.ts",
+    "export": "next export",
+    "deploy": "next build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy to gh-pages\" && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",

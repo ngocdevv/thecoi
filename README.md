@@ -65,6 +65,40 @@ npm run dev
 
 Ứng dụng sẽ chạy tại [http://localhost:3000](http://localhost:3000).
 
+## Triển khai lên GitHub Pages
+
+Dự án này đã được cấu hình để triển khai tự động lên GitHub Pages sử dụng GitHub Actions.
+
+### Cấu hình GitHub Pages
+
+1. Trong repository GitHub của bạn, vào **Settings** > **Pages**
+2. Trong phần **Source**, chọn **GitHub Actions**
+3. Đảm bảo rằng tên repository của bạn đã được cấu hình đúng trong file `next.config.ts` (basePath)
+
+### Triển khai thủ công
+
+Nếu bạn muốn triển khai thủ công, bạn có thể sử dụng lệnh sau:
+
+```bash
+npm run deploy
+```
+
+Lệnh này sẽ:
+
+1. Build ứng dụng
+2. Tạo file `.nojekyll` trong thư mục `out`
+3. Commit thư mục `out`
+4. Push thư mục `out` lên nhánh `gh-pages`
+
+### Triển khai tự động
+
+Mỗi khi bạn push code lên nhánh `main`, GitHub Actions sẽ tự động:
+
+1. Build ứng dụng
+2. Triển khai lên GitHub Pages
+
+Bạn có thể xem trạng thái triển khai trong tab **Actions** của repository GitHub.
+
 ## Cấu trúc dữ liệu Firebase
 
 ### Collections
