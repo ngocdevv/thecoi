@@ -9,16 +9,7 @@ import ProductEditModal from "@/components/ProductEditModal";
 import { Product } from "@/types";
 import { useHydration } from "@/utils/useHydration";
 
-// Sử dụng kiểu dữ liệu chính xác cho params
-type Params = {
-  id: string;
-};
-
-type Props = {
-  params: Params;
-};
-
-export default function RestaurantPage({ params }: Props) {
+export default function RestaurantPage({ params }: { params: { id: string } }) {
   const isHydrated = useHydration();
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);

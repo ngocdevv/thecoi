@@ -11,16 +11,7 @@ import { useHydration } from "@/utils/useHydration";
 import { useCart } from "@/contexts/CartContext";
 import Link from "next/link";
 
-// Sử dụng kiểu dữ liệu chính xác cho params
-type Params = {
-  id: string;
-};
-
-type Props = {
-  params: Params;
-};
-
-export default function ProductDetail({ params }: Props) {
+export default function ProductDetail({ params }: { params: { id: string } }) {
   const router = useRouter();
   const isHydrated = useHydration();
   const productId = parseInt(params.id);

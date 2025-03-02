@@ -15,16 +15,7 @@ import Link from "next/link";
 import ProductSelectionModal from "@/components/ProductSelectionModal";
 import { JsonProduct } from "@/types";
 
-// Sử dụng kiểu dữ liệu chính xác cho params
-type Params = {
-  id: string;
-};
-
-type Props = {
-  params: Params;
-};
-
-export default function EditOrderPage({ params }: Props) {
+export default function EditOrderPage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const isHydrated = useHydration();
   const [isLoading, setIsLoading] = useState(true);
