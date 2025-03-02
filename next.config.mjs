@@ -13,17 +13,9 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  // Configure images properly for Next.js 15
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "via.placeholder.com",
-      },
-      {
-        protocol: "https",
-        hostname: "media.be.com.vn",
-      },
-    ],
+    domains: ["via.placeholder.com", "media.be.com.vn"],
     unoptimized: true,
   },
 };
