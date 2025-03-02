@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "build:no-lint": "NEXT_DISABLE_ESLINT=1 next build",
+    "build:no-lint": "next build --no-lint",
     "start": "next start",
     "lint": "next lint",
     "scrape": "ts-node --project tsconfig.json -r tsconfig-paths/register src/scripts/scrape-food-be.ts",

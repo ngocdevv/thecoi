@@ -4,7 +4,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { loadJsonData } from "@/services/api";
-import { JsonProduct, JsonCustomizeItem, JsonCustomizeOption } from "@/types";
+import { JsonProduct } from "@/types";
 import Image from "next/image";
 
 interface ProductSelectionModalProps {
