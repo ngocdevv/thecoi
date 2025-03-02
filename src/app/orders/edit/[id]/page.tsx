@@ -20,6 +20,7 @@ interface OrderEditPageProps {
   params: {
     id: string;
   };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export default function EditOrderPage({ params }: OrderEditPageProps) {
