@@ -65,6 +65,29 @@ npm run dev
 
 Ứng dụng sẽ chạy tại [http://localhost:3000](http://localhost:3000).
 
+## Cấu hình Static Export
+
+Dự án này được cấu hình để sử dụng tính năng Static Export của Next.js với tùy chọn `output: 'export'`. Điều này cho phép triển khai trang web lên các dịch vụ hosting tĩnh như GitHub Pages.
+
+### Dynamic Routes với Static Export
+
+Để các route động hoạt động với static export, mỗi route động phải có một hàm `generateStaticParams` xác định các đường dẫn nào sẽ được pre-render tại thời điểm build. Điều này được triển khai trong các file sau:
+
+- `src/app/products/[id]/layout.tsx`
+- `src/app/orders/edit/[id]/layout.tsx`
+- `src/app/restaurant/[id]/layout.tsx`
+
+Mỗi file này xuất một hàm `generateStaticParams` trả về một mảng các đối tượng tham số cho các đường dẫn cần được pre-render.
+
+### Cấu hình Build
+
+Dự án bao gồm một số script build:
+
+- `npm run build` - Build Next.js tiêu chuẩn
+- `npm run build:no-lint` - Build mà không chạy ESLint
+- `npm run build:cached` - Build với bộ nhớ cache được bật và không chạy linting
+- `npm run clean-cache` - Xóa bộ nhớ cache build của Next.js
+
 ## Triển khai lên GitHub Pages
 
 Dự án này đã được cấu hình để triển khai tự động lên GitHub Pages sử dụng GitHub Actions.
@@ -73,7 +96,7 @@ Dự án này đã được cấu hình để triển khai tự động lên Git
 
 1. Trong repository GitHub của bạn, vào **Settings** > **Pages**
 2. Trong phần **Source**, chọn **GitHub Actions**
-3. Đảm bảo rằng tên repository của bạn đã được cấu hình đúng trong file `next.config.ts` (basePath)
+3. Đảm bảo rằng tên repository của bạn đã được cấu hình đúng trong file `next.config.mjs` (basePath)
 
 ### Triển khai thủ công
 

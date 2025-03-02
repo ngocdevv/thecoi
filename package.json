@@ -10,7 +10,9 @@
     "lint": "next lint",
     "scrape": "ts-node --project tsconfig.json -r tsconfig-paths/register src/scripts/scrape-food-be.ts",
     "export": "next export",
-    "deploy": "npm run build:no-lint && touch out/.nojekyll && git add out/ && git commit -m \"Deploy to gh-pages\" && git subtree push --prefix out origin gh-pages"
+    "deploy": "npm run build:no-lint && touch out/.nojekyll && git add out/ && git commit -m \"Deploy to gh-pages\" && git subtree push --prefix out origin gh-pages",
+    "clean-cache": "rm -rf .next/cache",
+    "build:cached": "next build --no-lint"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
