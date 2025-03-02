@@ -13,11 +13,6 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  // Configure images properly for Next.js 15
-  images: {
-    domains: ["via.placeholder.com", "media.be.com.vn"],
-    unoptimized: true,
-  },
 };
 
 export default nextConfig;
