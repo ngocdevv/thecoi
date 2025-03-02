@@ -24,3 +24,7 @@
 - Resolved issue with dynamic routes in static export by adding `generateStaticParams`
 - Fixed configuration warnings in Next.js build
 - Improved build performance with proper caching
+- Fixed type errors in dynamic route components by using proper interface definitions for params props
+  - Updated `/products/[id]/page.tsx`
+  - Updated `/orders/edit/[id]/page.tsx`
+  - Updated `/restaurant/[id]/page.tsx`

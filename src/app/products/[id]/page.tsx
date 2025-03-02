@@ -11,7 +11,14 @@ import { useHydration } from "@/utils/useHydration";
 import { useCart } from "@/contexts/CartContext";
 import Link from "next/link";
 
-export default function ProductDetail({ params }: { params: { id: string } }) {
+// Define the correct type for the component props
+interface ProductDetailProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function ProductDetail({ params }: ProductDetailProps) {
   const router = useRouter();
   const isHydrated = useHydration();
   const productId = parseInt(params.id);

@@ -9,7 +9,14 @@ import ProductEditModal from "@/components/ProductEditModal";
 import { Product } from "@/types";
 import { useHydration } from "@/utils/useHydration";
 
-export default function RestaurantPage({ params }: { params: { id: string } }) {
+// Define the correct type for the component props
+interface RestaurantPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function RestaurantPage({ params }: RestaurantPageProps) {
   const isHydrated = useHydration();
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);

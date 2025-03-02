@@ -15,7 +15,14 @@ import Link from "next/link";
 import ProductSelectionModal from "@/components/ProductSelectionModal";
 import { JsonProduct } from "@/types";
 
-export default function EditOrderPage({ params }: { params: { id: string } }) {
+// Define the correct type for the component props
+interface OrderEditPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function EditOrderPage({ params }: OrderEditPageProps) {
   const router = useRouter();
   const isHydrated = useHydration();
   const [isLoading, setIsLoading] = useState(true);
