@@ -273,7 +273,7 @@ export default function ProductsPage() {
                                     <img
                                       className="h-10 w-10 rounded-full object-cover"
                                       src={product.image}
-                                      alt={product.item_name}
+                                      alt={product.name}
                                     />
                                   ) : (
                                     <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
@@ -295,7 +295,7 @@ export default function ProductsPage() {
                                 </div>
                                 <div className="ml-4">
                                   <div className="text-sm font-medium text-gray-900">
-                                    {product.item_name}
+                                    {product.name}
                                   </div>
                                   <div className="text-sm text-gray-700 line-clamp-1">
                                     {product.description || "Không có mô tả"}
@@ -312,32 +312,27 @@ export default function ProductsPage() {
                               </div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-700">
-                                {product.options && product.options.length > 0
-                                  ? product.options
-                                      .map(
-                                        (option) =>
-                                          `${option.name} (${option.values.join(
-                                            ", "
-                                          )})`
-                                      )
-                                      .join("; ")
-                                  : "Không có tùy chọn"}
+                              <div className="text-sm text-gray-500">
+                                {product.options?.map((option) => (
+                                  <span
+                                    key={option.id}
+                                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 mr-2"
+                                  >
+                                    {option.name}
+                                    {option.price && ` (+${option.price})`}
+                                  </span>
+                                ))}
                               </div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                              <button
-                                onClick={() => handleEditProduct(product)}
-                                className="text-indigo-600 hover:text-indigo-900 mr-4"
-                              >
-                                Sửa
-                              </button>
-                              <button
-                                onClick={() => handleDeleteProduct(product.id)}
-                                className="text-red-600 hover:text-red-900"
-                              >
-                                Xóa
-                              </button>
+                              <div className="mt-2 flex space-x-2">
+                                <button
+                                  onClick={() => handleEditProduct(product)}
+                                  className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                >
+                                  Sửa
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}
