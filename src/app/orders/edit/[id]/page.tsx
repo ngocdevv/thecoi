@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import Header from "@/components/Header";
 import { useHydration } from "@/utils/useHydration";
 import {
@@ -15,16 +15,10 @@ import Link from "next/link";
 import ProductSelectionModal from "@/components/ProductSelectionModal";
 import { JsonProduct } from "@/types";
 
-// Define the correct type for the component props
-interface OrderEditPageProps {
-  params: {
-    id: string;
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
-
-export default function EditOrderPage({ params }: OrderEditPageProps) {
+export default function EditOrderPage() {
   const router = useRouter();
+  const params = useParams();
+  const id = params.id as string;
   const isHydrated = useHydration();
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -54,7 +48,7 @@ export default function EditOrderPage({ params }: OrderEditPageProps) {
     const loadOrder = async () => {
       try {
         setIsLoading(true);
-        const orderData = await fetchOrderById(params.id);
+        const orderData = await fetchOrderById(id);
 
         if (!orderData) {
           setError("Không tìm thấy đơn hàng");
@@ -88,7 +82,7 @@ export default function EditOrderPage({ params }: OrderEditPageProps) {
     };
 
     loadOrder();
-  }, [isHydrated, params.id]);
+  }, [isHydrated, id]);
 
   // Xử lý thay đổi form
   const handleChange = (
@@ -172,7 +166,7 @@ export default function EditOrderPage({ params }: OrderEditPageProps) {
       // Tính tổng tiền mới (subtotal + surcharge)
       const newTotalPrice = subtotal + formData.surcharge;
 
-      await updateOrder(params.id, {
+      await updateOrder(id, {
         customer_name: formData.customer_name,
         customer_phone: formData.customer_phone,
         customer_address: formData.customer_address,
@@ -248,7 +242,7 @@ export default function EditOrderPage({ params }: OrderEditPageProps) {
       const newTotalPrice = newSubtotal + formData.surcharge;
 
       // Thêm sản phẩm vào đơn hàng
-      await addProductToOrder(params.id, newItem, newTotalPrice);
+      await addProductToOrder(id, newItem, newTotalPrice);
 
       // Cập nhật lại state
       setOrder({
