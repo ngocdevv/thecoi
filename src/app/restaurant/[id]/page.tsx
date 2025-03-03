@@ -8,15 +8,11 @@ import CategorySection from "@/components/CategorySection";
 import ProductEditModal from "@/components/ProductEditModal";
 import { Product } from "@/types";
 import { useHydration } from "@/utils/useHydration";
+import { useParams } from "next/navigation";
 
-// Define the correct type for the component props
-interface RestaurantPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function RestaurantPage({ params }: RestaurantPageProps) {
+export default function RestaurantPage() {
+  const params = useParams();
+  const id = params.id as string;
   const isHydrated = useHydration();
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,8 +22,8 @@ export default function RestaurantPage({ params }: RestaurantPageProps) {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["restaurant", params.id],
-    queryFn: () => fetchRestaurantById(params.id),
+    queryKey: ["restaurant", id],
+    queryFn: () => fetchRestaurantById(id),
   });
 
   const handleEditProduct = (product: Product) => {

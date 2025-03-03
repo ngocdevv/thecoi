@@ -6,22 +6,17 @@ import { loadJsonData } from "@/services/api";
 import { JsonProduct, JsonCustomizeItem, JsonCustomizeOption } from "@/types";
 import Header from "@/components/Header";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useHydration } from "@/utils/useHydration";
 import { useCart } from "@/contexts/CartContext";
 import Link from "next/link";
 
-// Define the correct type for the component props
-interface ProductDetailProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function ProductDetail({ params }: ProductDetailProps) {
+export default function ProductDetail() {
   const router = useRouter();
+  const params = useParams();
+  const id = params.id as string;
   const isHydrated = useHydration();
-  const productId = parseInt(params.id);
+  const productId = parseInt(id);
   const { addToCart } = useCart();
 
   const [selectedOptions, setSelectedOptions] = useState<
