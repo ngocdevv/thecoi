@@ -195,9 +195,9 @@ export default function CartPage() {
           )}
 
           {items.length === 0 && !orderSuccess ? (
-            <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6 text-center">
+            <div className="bg-white shadow overflow-hidden sm:rounded-lg p-4 sm:p-6 text-center">
               <svg
-                className="mx-auto h-12 w-12 text-gray-400"
+                className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -210,16 +210,16 @@ export default function CartPage() {
                   d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                 />
               </svg>
-              <h3 className="mt-2 text-sm font-medium text-gray-900">
+              <h3 className="mt-2 text-base sm:text-lg font-medium text-gray-900">
                 Giỏ hàng trống
               </h3>
               <p className="mt-1 text-sm text-gray-500">
                 Bạn chưa thêm sản phẩm nào vào giỏ hàng.
               </p>
-              <div className="mt-6">
+              <div className="mt-4 sm:mt-6">
                 <Link
                   href="/products/table"
-                  className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex items-center px-4 py-2.5 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Xem sản phẩm
                 </Link>
@@ -228,7 +228,7 @@ export default function CartPage() {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
               {/* Danh sách sản phẩm */}
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-2 order-2 lg:order-1">
                 <div className="bg-white shadow overflow-hidden rounded-lg">
                   <ul role="list" className="divide-y divide-gray-200">
                     {items.map((item) => (
@@ -244,14 +244,14 @@ export default function CartPage() {
               </div>
 
               {/* Thông tin đặt hàng */}
-              <div className="lg:col-span-1">
-                <div className="bg-white shadow overflow-hidden rounded-lg p-4 md:p-6 sticky top-4">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-6">
+              <div className="lg:col-span-1 order-1 lg:order-2">
+                <div className="bg-white shadow overflow-hidden rounded-lg p-4 md:p-6 lg:sticky lg:top-4">
+                  <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 sm:mb-6">
                     Thông tin đặt hàng
                   </h2>
 
                   {/* Form thông tin khách hàng */}
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     <div>
                       <label
                         htmlFor="customer_name"
@@ -265,7 +265,7 @@ export default function CartPage() {
                         name="customer_name"
                         value={customerInfo.customer_name}
                         onChange={handleInputChange}
-                        className={`mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11 px-4 ${
+                        className={`mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm h-12 sm:h-11 px-4 ${
                           errors.customer_name
                             ? "border-red-300 text-red-900 placeholder-red-300"
                             : "border-gray-300 text-gray-900"
@@ -287,12 +287,13 @@ export default function CartPage() {
                         Số điện thoại <span className="text-red-500">*</span>
                       </label>
                       <input
-                        type="text"
+                        type="tel"
+                        inputMode="numeric"
                         name="customer_phone"
                         id="customer_phone"
                         value={customerInfo.customer_phone}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11 px-4 text-gray-900"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm h-12 sm:h-11 px-4 text-gray-900"
                         placeholder="Nhập số điện thoại"
                       />
                       {errors.customer_phone && (
@@ -315,7 +316,7 @@ export default function CartPage() {
                         rows={3}
                         value={customerInfo.customer_address}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-900 px-4 py-3"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm text-gray-900 px-4 py-3"
                         placeholder="Nhập địa chỉ giao hàng"
                       />
                       {errors.customer_address && (
@@ -325,7 +326,7 @@ export default function CartPage() {
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <label
                           htmlFor="surcharge"
@@ -335,13 +336,14 @@ export default function CartPage() {
                         </label>
                         <input
                           type="number"
+                          inputMode="numeric"
                           name="surcharge"
                           id="surcharge"
                           min="0"
                           step="1000"
                           value={customerInfo.surcharge}
                           onChange={handleInputChange}
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11 px-4 text-gray-900"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm h-12 sm:h-11 px-4 text-gray-900"
                           placeholder="0"
                         />
                       </div>
@@ -359,29 +361,29 @@ export default function CartPage() {
                           id="surcharge_note"
                           value={customerInfo.surcharge_note}
                           onChange={handleInputChange}
-                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11 px-4 text-gray-900"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm h-12 sm:h-11 px-4 text-gray-900"
                           placeholder="Phí giao hàng, phí đóng gói..."
                         />
                       </div>
                     </div>
 
                     {/* Tóm tắt đơn hàng */}
-                    <div className="mt-8 pt-6 border-t border-gray-200">
-                      <div className="space-y-4">
+                    <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
+                      <div className="space-y-3 sm:space-y-4">
                         {items.map((item) => (
                           <div
                             key={item.id}
                             className="flex justify-between items-center py-2"
                           >
                             <div className="flex items-center">
-                              <span className="text-sm text-gray-800">
+                              <span className="text-sm text-gray-800 line-clamp-2">
                                 {item.product.item_name}
                               </span>
-                              <span className="text-sm text-gray-500 ml-2">
+                              <span className="text-sm text-gray-500 ml-2 whitespace-nowrap">
                                 x{item.quantity}
                               </span>
                             </div>
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-gray-900 ml-4 whitespace-nowrap">
                               {new Intl.NumberFormat("vi-VN", {
                                 style: "currency",
                                 currency: "VND",
@@ -390,12 +392,12 @@ export default function CartPage() {
                           </div>
                         ))}
 
-                        <div className="pt-4 border-t border-gray-200 space-y-3">
+                        <div className="pt-3 sm:pt-4 border-t border-gray-200 space-y-3">
                           <div className="flex justify-between text-sm">
                             <span className="text-gray-600">
                               Tổng tiền sản phẩm
                             </span>
-                            <span className="font-medium text-gray-900">
+                            <span className="font-medium text-gray-900 ml-4">
                               {new Intl.NumberFormat("vi-VN", {
                                 style: "currency",
                                 currency: "VND",
@@ -404,16 +406,16 @@ export default function CartPage() {
                           </div>
 
                           {customerInfo.surcharge > 0 && (
-                            <div className="flex justify-between text-sm">
+                            <div className="flex justify-between text-sm items-start">
                               <span className="text-gray-600">
                                 Phụ thu{" "}
                                 {customerInfo.surcharge_note && (
-                                  <span className="text-gray-500">
+                                  <span className="text-gray-500 block text-xs mt-0.5">
                                     ({customerInfo.surcharge_note})
                                   </span>
                                 )}
                               </span>
-                              <span className="font-medium text-gray-900">
+                              <span className="font-medium text-gray-900 ml-4 whitespace-nowrap">
                                 {new Intl.NumberFormat("vi-VN", {
                                   style: "currency",
                                   currency: "VND",
@@ -424,7 +426,7 @@ export default function CartPage() {
 
                           <div className="flex justify-between text-base font-medium pt-3 border-t border-gray-200">
                             <span className="text-gray-900">Tổng cộng</span>
-                            <span className="text-indigo-600">
+                            <span className="text-indigo-600 ml-4 whitespace-nowrap">
                               {new Intl.NumberFormat("vi-VN", {
                                 style: "currency",
                                 currency: "VND",
@@ -433,10 +435,10 @@ export default function CartPage() {
                           </div>
                         </div>
 
-                        <div className="mt-6 space-y-4">
+                        <div className="mt-6 space-y-3 sm:space-y-4">
                           <button
                             type="button"
-                            className="w-full px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full px-6 py-3.5 sm:py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
                             onClick={handleCheckout}
                             disabled={isCheckingOut || items.length === 0}
                           >
@@ -472,7 +474,7 @@ export default function CartPage() {
                           {items.length > 0 && (
                             <button
                               type="button"
-                              className="w-full px-6 py-3 text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none border border-indigo-600 rounded-md hover:bg-indigo-50"
+                              className="w-full px-6 py-3.5 sm:py-3 text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none border border-indigo-600 rounded-md hover:bg-indigo-50"
                               onClick={clearCart}
                             >
                               Xóa tất cả sản phẩm

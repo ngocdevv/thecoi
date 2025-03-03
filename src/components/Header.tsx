@@ -11,51 +11,44 @@ export default function Header() {
   const { totalItems } = useCart();
 
   return (
-    <header className="bg-white shadow">
+    <header className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
-              <h1 className="text-xl font-bold text-indigo-600">
-                BE Food Manager
-              </h1>
-            </div>
-            <nav className="ml-6 flex space-x-8">
-              <Link
-                href="/products/table"
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  pathname === "/products/table"
-                    ? "border-indigo-500 text-gray-900"
-                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                }`}
-              >
-                Quản lý sản phẩm
-              </Link>
-              <Link
-                href="/orders"
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  pathname === "/orders"
-                    ? "border-indigo-500 text-gray-900"
-                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                }`}
-              >
-                Quản lý đơn hàng
-              </Link>
-            </nav>
-          </div>
+        <div className="flex justify-between h-14">
+          <nav className="flex space-x-8">
+            <Link
+              href="/products/table"
+              className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                pathname === "/products/table"
+                  ? "border-indigo-500 text-gray-900"
+                  : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+              }`}
+            >
+              Sản phẩm
+            </Link>
+            <Link
+              href="/orders"
+              className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                pathname === "/orders"
+                  ? "border-indigo-500 text-gray-900"
+                  : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+              }`}
+            >
+              Đơn hàng
+            </Link>
+          </nav>
 
           {/* Giỏ hàng */}
           <div className="flex items-center">
             <Link
               href="/cart"
-              className={`relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md ${
+              className={`relative inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md ${
                 pathname === "/cart"
-                  ? "bg-indigo-100 text-indigo-700"
+                  ? "bg-indigo-50 text-indigo-700"
                   : "text-gray-500 hover:text-indigo-600"
               }`}
             >
               <svg
-                className="h-6 w-6 mr-1"
+                className="h-5 w-5 mr-1"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -69,7 +62,7 @@ export default function Header() {
               </svg>
               Giỏ hàng
               {isHydrated && totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-indigo-600 rounded-full">
+                <span className="absolute -top-1.5 -right-1.5 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-indigo-600 rounded-full">
                   {totalItems}
                 </span>
               )}
