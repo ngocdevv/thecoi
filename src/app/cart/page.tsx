@@ -246,265 +246,238 @@ export default function CartPage() {
               {/* Thông tin đặt hàng */}
               <div className="lg:col-span-1">
                 <div className="bg-white shadow overflow-hidden rounded-lg p-4 md:p-6 sticky top-4">
-                  <h2 className="text-lg font-medium text-gray-900 mb-4">
+                  <h2 className="text-xl font-semibold text-gray-900 mb-6">
                     Thông tin đặt hàng
                   </h2>
 
-                  {/* Thông tin đơn hàng */}
-                  <div className="mt-10 sm:mt-0">
-                    <div className="md:grid md:grid-cols-3 md:gap-6">
-                      <div className="md:col-span-1">
-                        <div className="px-4 sm:px-0">
-                          <h3 className="text-lg font-medium leading-6 text-gray-900">
-                            Thông tin đơn hàng
-                          </h3>
-                          <p className="mt-1 text-sm text-gray-700">
-                            Vui lòng điền đầy đủ thông tin để hoàn tất đơn hàng.
-                          </p>
-                        </div>
+                  {/* Form thông tin khách hàng */}
+                  <div className="space-y-6">
+                    <div>
+                      <label
+                        htmlFor="customer_name"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Tên khách hàng <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="customer_name"
+                        name="customer_name"
+                        value={customerInfo.customer_name}
+                        onChange={handleInputChange}
+                        className={`mt-1 block w-full rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11 px-4 ${
+                          errors.customer_name
+                            ? "border-red-300 text-red-900 placeholder-red-300"
+                            : "border-gray-300 text-gray-900"
+                        }`}
+                        placeholder="Nhập tên của bạn"
+                      />
+                      {errors.customer_name && (
+                        <p className="mt-1.5 text-sm text-red-600">
+                          {errors.customer_name}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="customer_phone"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Số điện thoại <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="customer_phone"
+                        id="customer_phone"
+                        value={customerInfo.customer_phone}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11 px-4 text-gray-900"
+                        placeholder="Nhập số điện thoại"
+                      />
+                      {errors.customer_phone && (
+                        <p className="mt-1.5 text-sm text-red-600">
+                          {errors.customer_phone}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="customer_address"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Địa chỉ <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        id="customer_address"
+                        name="customer_address"
+                        rows={3}
+                        value={customerInfo.customer_address}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-900 px-4 py-3"
+                        placeholder="Nhập địa chỉ giao hàng"
+                      />
+                      {errors.customer_address && (
+                        <p className="mt-1.5 text-sm text-red-600">
+                          {errors.customer_address}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                      <div>
+                        <label
+                          htmlFor="surcharge"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                          Phụ thu
+                        </label>
+                        <input
+                          type="number"
+                          name="surcharge"
+                          id="surcharge"
+                          min="0"
+                          step="1000"
+                          value={customerInfo.surcharge}
+                          onChange={handleInputChange}
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11 px-4 text-gray-900"
+                          placeholder="0"
+                        />
                       </div>
-                      <div className="mt-5 md:mt-0 md:col-span-2">
-                        <div className="shadow overflow-hidden sm:rounded-md">
-                          <div className="px-4 py-5 bg-white sm:p-6">
-                            {/* Form thông tin khách hàng */}
-                            <div className="space-y-4">
-                              <div>
-                                <label
-                                  htmlFor="customer_name"
-                                  className="block text-sm font-medium text-gray-800"
-                                >
-                                  Tên khách hàng{" "}
-                                  <span className="text-red-600">*</span>
-                                </label>
-                                <input
-                                  type="text"
-                                  id="customer_name"
-                                  name="customer_name"
-                                  value={customerInfo.customer_name}
-                                  onChange={handleInputChange}
-                                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2 px-3 h-10 text-gray-800 ${
-                                    errors.customer_name ? "border-red-300" : ""
-                                  }`}
-                                  placeholder="Nhập tên của bạn"
-                                />
-                                {errors.customer_name && (
-                                  <p className="mt-1 text-sm text-red-600">
-                                    {errors.customer_name}
-                                  </p>
-                                )}
-                              </div>
 
-                              <div>
-                                <label
-                                  htmlFor="customer_phone"
-                                  className="block text-sm font-medium text-gray-800"
-                                >
-                                  Số điện thoại{" "}
-                                  <span className="text-red-600">*</span>
-                                </label>
-                                <input
-                                  type="text"
-                                  name="customer_phone"
-                                  id="customer_phone"
-                                  value={customerInfo.customer_phone}
-                                  onChange={handleInputChange}
-                                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md text-gray-800"
-                                />
-                              </div>
-
-                              <div className="col-span-6">
-                                <label
-                                  htmlFor="customer_address"
-                                  className="block text-sm font-medium text-gray-800"
-                                >
-                                  Địa chỉ{" "}
-                                  <span className="text-red-600">*</span>
-                                </label>
-                                <textarea
-                                  id="customer_address"
-                                  name="customer_address"
-                                  rows={3}
-                                  value={customerInfo.customer_address}
-                                  onChange={handleInputChange}
-                                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md text-gray-800"
-                                />
-                              </div>
-
-                              <div className="col-span-6 sm:col-span-3">
-                                <label
-                                  htmlFor="surcharge"
-                                  className="block text-sm font-medium text-gray-800"
-                                >
-                                  Phụ thu (VNĐ)
-                                </label>
-                                <input
-                                  type="number"
-                                  name="surcharge"
-                                  id="surcharge"
-                                  min="0"
-                                  step="1000"
-                                  value={customerInfo.surcharge}
-                                  onChange={handleInputChange}
-                                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md text-gray-800"
-                                />
-                              </div>
-
-                              <div className="col-span-6 sm:col-span-3">
-                                <label
-                                  htmlFor="surcharge_note"
-                                  className="block text-sm font-medium text-gray-800"
-                                >
-                                  Ghi chú phụ thu
-                                </label>
-                                <input
-                                  type="text"
-                                  name="surcharge_note"
-                                  id="surcharge_note"
-                                  value={customerInfo.surcharge_note}
-                                  onChange={handleInputChange}
-                                  placeholder="Ví dụ: Phí giao hàng, phí đóng gói..."
-                                  className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md text-gray-800"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div>
+                        <label
+                          htmlFor="surcharge_note"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                          Ghi chú phụ thu
+                        </label>
+                        <input
+                          type="text"
+                          name="surcharge_note"
+                          id="surcharge_note"
+                          value={customerInfo.surcharge_note}
+                          onChange={handleInputChange}
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-11 px-4 text-gray-900"
+                          placeholder="Phí giao hàng, phí đóng gói..."
+                        />
                       </div>
                     </div>
-                  </div>
 
-                  {/* Tóm tắt đơn hàng */}
-                  <div className="mt-10">
-                    <div className="md:grid md:grid-cols-3 md:gap-6">
-                      <div className="md:col-span-1">
-                        <div className="px-4 sm:px-0">
-                          <h3 className="text-lg font-medium leading-6 text-gray-900">
-                            Tóm tắt đơn hàng
-                          </h3>
-                          <p className="mt-1 text-sm text-gray-700">
-                            Kiểm tra lại thông tin đơn hàng trước khi đặt.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="mt-5 md:mt-0 md:col-span-2">
-                        <div className="shadow overflow-hidden sm:rounded-md">
-                          <div className="px-4 py-5 bg-white sm:p-6">
-                            {/* Danh sách sản phẩm */}
-                            <div className="mb-6">
-                              <h4 className="text-base font-medium text-gray-800 mb-3">
-                                Sản phẩm ({items.length})
-                              </h4>
-
-                              {items.map((item) => (
-                                <div
-                                  key={item.id}
-                                  className="flex justify-between"
-                                >
-                                  <span>{item.product.item_name}</span>
-                                  <span>
-                                    {new Intl.NumberFormat("vi-VN", {
-                                      style: "currency",
-                                      currency: "VND",
-                                    }).format(item.totalPrice)}
-                                  </span>
-                                </div>
-                              ))}
+                    {/* Tóm tắt đơn hàng */}
+                    <div className="mt-8 pt-6 border-t border-gray-200">
+                      <div className="space-y-4">
+                        {items.map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex justify-between items-center py-2"
+                          >
+                            <div className="flex items-center">
+                              <span className="text-sm text-gray-800">
+                                {item.product.item_name}
+                              </span>
+                              <span className="text-sm text-gray-500 ml-2">
+                                x{item.quantity}
+                              </span>
                             </div>
-
-                            {/* Tổng tiền */}
-                            <div className="border-t pt-4">
-                              <div className="flex justify-between text-sm mb-2">
-                                <span className="font-medium text-gray-800">
-                                  Tổng tiền sản phẩm:
-                                </span>
-                                <span className="font-medium">
-                                  {new Intl.NumberFormat("vi-VN", {
-                                    style: "currency",
-                                    currency: "VND",
-                                  }).format(totalPrice)}
-                                </span>
-                              </div>
-                              <div className="flex justify-between text-sm mb-2">
-                                <span className="font-medium text-gray-800">
-                                  Phụ thu{" "}
-                                  {customerInfo.surcharge_note
-                                    ? `(${customerInfo.surcharge_note})`
-                                    : ""}
-                                  :
-                                </span>
-                                <span className="font-medium">
-                                  {new Intl.NumberFormat("vi-VN", {
-                                    style: "currency",
-                                    currency: "VND",
-                                  }).format(customerInfo.surcharge)}
-                                </span>
-                              </div>
-                              <div className="flex justify-between text-base font-medium text-gray-900 border-t pt-2 mt-2">
-                                <span>Tổng cộng:</span>
-                                <span className="text-indigo-700">
-                                  {new Intl.NumberFormat("vi-VN", {
-                                    style: "currency",
-                                    currency: "VND",
-                                  }).format(finalTotalPrice)}
-                                </span>
-                              </div>
-                            </div>
-
-                            <div className="mt-5 md:mt-0 md:col-span-2">
-                              <div className="shadow overflow-hidden sm:rounded-md">
-                                <div className="px-4 py-5 bg-white sm:p-6">
-                                  <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center md:justify-between">
-                                    <button
-                                      type="button"
-                                      className="w-full md:w-auto px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                                      onClick={handleCheckout}
-                                      disabled={
-                                        isCheckingOut || items.length === 0
-                                      }
-                                    >
-                                      {isCheckingOut ? (
-                                        <div className="flex items-center justify-center">
-                                          <svg
-                                            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                          >
-                                            <circle
-                                              className="opacity-25"
-                                              cx="12"
-                                              cy="12"
-                                              r="10"
-                                              stroke="currentColor"
-                                              strokeWidth="4"
-                                            ></circle>
-                                            <path
-                                              className="opacity-75"
-                                              fill="currentColor"
-                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                            ></path>
-                                          </svg>
-                                          Đang xử lý...
-                                        </div>
-                                      ) : (
-                                        "Đặt hàng"
-                                      )}
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                              <button
-                                type="button"
-                                className="font-medium text-indigo-600 hover:text-indigo-500 py-2 px-4"
-                                onClick={clearCart}
-                                disabled={items.length === 0}
-                              >
-                                Xóa tất cả sản phẩm
-                              </button>
-                            </div>
+                            <span className="text-sm font-medium text-gray-900">
+                              {new Intl.NumberFormat("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                              }).format(item.totalPrice)}
+                            </span>
                           </div>
+                        ))}
+
+                        <div className="pt-4 border-t border-gray-200 space-y-3">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">
+                              Tổng tiền sản phẩm
+                            </span>
+                            <span className="font-medium text-gray-900">
+                              {new Intl.NumberFormat("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                              }).format(totalPrice)}
+                            </span>
+                          </div>
+
+                          {customerInfo.surcharge > 0 && (
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-600">
+                                Phụ thu{" "}
+                                {customerInfo.surcharge_note && (
+                                  <span className="text-gray-500">
+                                    ({customerInfo.surcharge_note})
+                                  </span>
+                                )}
+                              </span>
+                              <span className="font-medium text-gray-900">
+                                {new Intl.NumberFormat("vi-VN", {
+                                  style: "currency",
+                                  currency: "VND",
+                                }).format(customerInfo.surcharge)}
+                              </span>
+                            </div>
+                          )}
+
+                          <div className="flex justify-between text-base font-medium pt-3 border-t border-gray-200">
+                            <span className="text-gray-900">Tổng cộng</span>
+                            <span className="text-indigo-600">
+                              {new Intl.NumberFormat("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                              }).format(finalTotalPrice)}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="mt-6 space-y-4">
+                          <button
+                            type="button"
+                            className="w-full px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                            onClick={handleCheckout}
+                            disabled={isCheckingOut || items.length === 0}
+                          >
+                            {isCheckingOut ? (
+                              <div className="flex items-center justify-center">
+                                <svg
+                                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <circle
+                                    className="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                  ></circle>
+                                  <path
+                                    className="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                  ></path>
+                                </svg>
+                                Đang xử lý...
+                              </div>
+                            ) : (
+                              "Đặt hàng"
+                            )}
+                          </button>
+
+                          {items.length > 0 && (
+                            <button
+                              type="button"
+                              className="w-full px-6 py-3 text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none border border-indigo-600 rounded-md hover:bg-indigo-50"
+                              onClick={clearCart}
+                            >
+                              Xóa tất cả sản phẩm
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>

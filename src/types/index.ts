@@ -29,6 +29,36 @@ export interface ProductOption {
   price?: number;
 }
 
+export interface Order {
+  id: string;
+  created_at: number;
+  customer_name: string;
+  customer_phone: string;
+  customer_address: string;
+  status: 'pending' | 'processing' | 'completed' | 'cancelled';
+  items: OrderItem[];
+  surcharge: number;
+  surcharge_note?: string;
+  total_price: number;
+}
+
+export interface OrderItem {
+  product_id: number;
+  product_name: string;
+  quantity: number;
+  price: number;
+  options: OrderOption[];
+  total_price: number;
+}
+
+export interface OrderOption {
+  customize_id: number;
+  customize_name: string;
+  option_id: number;
+  option_name: string;
+  price: number;
+}
+
 export interface ApiResponse {
   status: number;
   data?: {
