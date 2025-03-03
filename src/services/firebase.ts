@@ -4,13 +4,13 @@ import { JsonData, JsonCategory, JsonProduct } from '@/types';
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC8NHW5TZZf3nA3uAs471sW2muWtpF3_0U",
-  authDomain: "thekoi-fb902.firebaseapp.com",
-  projectId: "thekoi-fb902",
-  storageBucket: "thekoi-fb902.firebasestorage.app",
-  messagingSenderId: "716256891204",
-  appId: "1:716256891204:web:d4f9e6688d9eaf3000c711",
-  measurementId: "G-EQBQFLMMV7"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
