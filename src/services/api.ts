@@ -97,7 +97,7 @@ export const fetchRestaurantById = async (id: string): Promise<Restaurant | null
       // Tạo đối tượng Restaurant
       const restaurant: Restaurant = {
         id: apiRestaurant.id.toString(),
-        name: apiRestaurant.name,
+        name: 'Koi The Restaurant',
         description: apiRestaurant.description || '',
         address: apiRestaurant.address || '',
         image: apiRestaurant.image_url || '',

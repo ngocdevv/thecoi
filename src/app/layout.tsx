@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BE Food Product Management",
-  description: "Product management interface for BE Food",
+  title: "Order Koi The",
+  description: "Order management system for Koi The",
 };
 
 export default function RootLayout({
